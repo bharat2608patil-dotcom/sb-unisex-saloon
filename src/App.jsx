@@ -1,6 +1,20 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, CalendarDays, Check, Clock3, MapPin, Menu, MessageCircle, Plus, Star, X } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowRight,
+  ArrowUpRight,
+  CalendarDays,
+  Check,
+  Clock3,
+  Camera,
+  MapPin,
+  Menu,
+  MessageCircle,
+  Plus,
+  Star,
+  X
+} from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Route, Switch, Router as WouterRouter, Link } from "wouter";
@@ -10,28 +24,6 @@ import { useBridal, useBusiness, useContact, useFAQ, useGallery, useHairTreatmen
 
 const queryClient = new QueryClient();
 const img = (path) => path;
-
-// Custom Instagram Icon component to replace the missing export from lucide-react
-function InstagramIcon({ size = 17, className = "" }) {
-  return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      width={size} 
-      height={size} 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round" 
-      className={className}
-    >
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-    </svg>
-  );
-}
 
 function SectionIntro({ eyebrow, title, description, light = false }) {
   return <div className={`mb-12 max-w-3xl ${light ? "text-[hsl(var(--background))]" : ""}`}>
@@ -162,7 +154,7 @@ function FAQ() {
 function Contact({ onBook }) {
   const business = useBusiness();
   const contact = useContact();
-  return <section id="contact" className="bg-[hsl(var(--primary))] py-24 text-[hsl(var(--background))] md:py-32"><div className="section-wrap grid gap-12 md:grid-cols-[.9fr_1.1fr]"><div><p className="eyebrow text-[hsl(var(--secondary))]">Come by</p><h2 className="section-title mt-5">Your chair<br /><i className="text-[hsl(var(--secondary))]">is waiting.</i></h2><p className="mt-7 max-w-sm text-sm leading-7 text-[hsl(var(--background)/.62)]">Find us in the heart of Indira Nagar. Come as you are; leave feeling looked after.</p><div className="mt-9 flex flex-wrap gap-3"><button className="btn-primary !bg-[hsl(var(--secondary))] !text-[hsl(var(--primary))]" onClick={onBook} data-testid="button-contact-book"><CalendarDays size={16} /> Book a visit</button><a href={`https://wa.me/?text=${encodeURIComponent(contact.whatsappMessage)}`} target="_blank" rel="noreferrer" className="btn-outline !border-[hsl(var(--background)/.3)] !text-[hsl(var(--background))]" data-testid="link-whatsapp"><MessageCircle size={16} /> WhatsApp us</a></div></div><div className="grid gap-3"><a href={business.mapUrl} target="_blank" rel="noreferrer" className="group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-[1.5rem] bg-[hsl(var(--accent)/.35)] p-6" data-testid="link-map"><div className="absolute -right-8 -top-8 h-52 w-52 rounded-full border border-[hsl(var(--secondary)/.55)] group-hover:scale-110 transition-transform" /><div className="relative flex justify-between"><MapPin className="text-[hsl(var(--secondary))]" /><ArrowUpRight className="text-[hsl(var(--secondary))]" /></div><div className="relative"><p className="eyebrow text-[hsl(var(--secondary))]">The address</p><p className="mt-3 max-w-xs text-sm leading-6">{business.address.map((line) => <span className="block" key={line}>{line}</span>)}</p><p className="mt-3 text-xs text-[hsl(var(--background)/.5)]">{business.plusCode}</p></div></a><div className="grid gap-3 sm:grid-cols-2"><div className="rounded-[1.5rem] border border-[hsl(var(--background)/.14)] p-5"><Clock3 size={17} className="text-[hsl(var(--secondary))]" /><p className="eyebrow mt-8 text-[hsl(var(--background)/.48)]">Open today</p><p className="mt-2 text-sm">10:00 am — 8:30 pm</p></div><div className="rounded-[1.5rem] border border-[hsl(var(--background)/.14)] p-5"><InstagramIcon size={17} className="text-[hsl(var(--secondary))]" /><p className="eyebrow mt-8 text-[hsl(var(--background)/.48)]">Stay inspired</p><a href={contact.instagram} className="mt-2 block text-sm underline underline-offset-4">Follow the studio</a></div></div></div></div></section>;
+  return <section id="contact" className="bg-[hsl(var(--primary))] py-24 text-[hsl(var(--background))] md:py-32"><div className="section-wrap grid gap-12 md:grid-cols-[.9fr_1.1fr]"><div><p className="eyebrow text-[hsl(var(--secondary))]">Come by</p><h2 className="section-title mt-5">Your chair<br /><i className="text-[hsl(var(--secondary))]">is waiting.</i></h2><p className="mt-7 max-w-sm text-sm leading-7 text-[hsl(var(--background)/.62)]">Find us in the heart of Indira Nagar. Come as you are; leave feeling looked after.</p><div className="mt-9 flex flex-wrap gap-3"><button className="btn-primary !bg-[hsl(var(--secondary))] !text-[hsl(var(--primary))]" onClick={onBook} data-testid="button-contact-book"><CalendarDays size={16} /> Book a visit</button><a href={`https://wa.me/?text=${encodeURIComponent(contact.whatsappMessage)}`} target="_blank" rel="noreferrer" className="btn-outline !border-[hsl(var(--background)/.3)] !text-[hsl(var(--background))]" data-testid="link-whatsapp"><MessageCircle size={16} /> WhatsApp us</a></div></div><div className="grid gap-3"><a href={business.mapUrl} target="_blank" rel="noreferrer" className="group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-[1.5rem] bg-[hsl(var(--accent)/.35)] p-6" data-testid="link-map"><div className="absolute -right-8 -top-8 h-52 w-52 rounded-full border border-[hsl(var(--secondary)/.55)] group-hover:scale-110 transition-transform" /><div className="relative flex justify-between"><MapPin className="text-[hsl(var(--secondary))]" /><ArrowUpRight className="text-[hsl(var(--secondary))]" /></div><div className="relative"><p className="eyebrow text-[hsl(var(--secondary))]">The address</p><p className="mt-3 max-w-xs text-sm leading-6">{business.address.map((line) => <span className="block" key={line}>{line}</span>)}</p><p className="mt-3 text-xs text-[hsl(var(--background)/.5)]">{business.plusCode}</p></div></a><div className="grid gap-3 sm:grid-cols-2"><div className="rounded-[1.5rem] border border-[hsl(var(--background)/.14)] p-5"><Clock3 size={17} className="text-[hsl(var(--secondary))]" /><p className="eyebrow mt-8 text-[hsl(var(--background)/.48)]">Open today</p><p className="mt-2 text-sm">10:00 am — 8:30 pm</p></div><div className="rounded-[1.5rem] border border-[hsl(var(--background)/.14)] p-5"><Camera size={17} className="text-[hsl(var(--secondary))]" /><p className="eyebrow mt-8 text-[hsl(var(--background)/.48)]">Stay inspired</p><a href={contact.instagram} className="mt-2 block text-sm underline underline-offset-4">Follow the studio</a></div></div></div></div></section>;
 }
 
 function Footer() {
