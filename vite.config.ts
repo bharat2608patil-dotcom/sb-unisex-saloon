@@ -20,12 +20,9 @@ export default defineConfig({
     emptyOutDir: true,
   },
   server: {
-    port: 5173,
-    host: '0.0.0.0',
-    proxy: {
-      '/api': 'http://localhost:3001',
-    },
-  },
+  port: 5173,
+  host: "0.0.0.0",
+},
   preview: {
     port: 3000,
     host: '0.0.0.0',

@@ -1,30 +1,30 @@
 export const salonApi = {
   requestAppointment: async (details) => {
     const payload = {
-      name: details.name || "",
-      phone: details.phone || "",
-      email: details.email || "",
-      service: details.service || "",
-      date: details.date || "",
-      time: details.time || "",
-      notes: details.notes || "",
-      _subject: "New booking enquiry",
+      name: details.name,
+      phone: details.phone,
+      email: details.email,
+      service: details.service,
+      date: details.date,
+      time: details.time,
+      notes: details.notes,
+      _subject: "New Booking Request",
     };
 
-    const response = await fetch("http://localhost:3001/api/booking", {
+    const response = await fetch("/api/booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
       },
       body: JSON.stringify(payload),
     });
 
+    const result = await response.json();
+
     if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || "Unable to send booking request.");
+      throw new Error(result.error || "Unable to send booking request.");
     }
 
-    return await response.json();
+    return result;
   },
 };

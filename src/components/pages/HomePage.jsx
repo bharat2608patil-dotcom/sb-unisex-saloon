@@ -3,6 +3,8 @@ import { ArrowUpRight } from "lucide-react";
 import Header from "../layout/Header";
 import Hero from "../sections/Hero";
 import TrustStrip from "../sections/TrustStrip";
+import AboutSection from "../sections/AboutSection";
+import StandardsSection from "../sections/StandardsSection";
 import StudioStory from "../sections/StudioStory";
 import ServicesSection from "../sections/ServicesSection";
 import PricingSection from "../sections/PricingSection";
@@ -22,7 +24,7 @@ function HomePage() {
   const [bookingOpen, setBookingOpen] = useState(false);
 
   useEffect(() => {
-    document.title = "The Premium Studio | Unisex Salon, Nashik";
+    document.title = "SB Unisex Salon | Premium Hair & Beauty Studio";
   }, []);
 
   return (
@@ -31,6 +33,8 @@ function HomePage() {
       <main>
         <Hero onBook={() => setBookingOpen(true)} />
         <TrustStrip />
+        <AboutSection />
+        <StandardsSection />
         <StudioStory />
         <ServicesSection />
         <PricingSection />

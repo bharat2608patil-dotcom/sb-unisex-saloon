@@ -4,7 +4,7 @@ export const services = [
     title: "Hair Services",
     tag: "Cut · Style · Care",
     description:
-      "Professional haircuts, styling and hair care tailored to your personality.",
+      "Expert haircuts, styling, smoothing, and treatment plans tailored to your hair goals.",
     items: ["Haircut", "Hair Styling", "Hair Spa", "Hair Colour", "Hair Treatments"],
     icon: "scissors",
   },
@@ -13,7 +13,7 @@ export const services = [
     title: "Beauty Services",
     tag: "Skin · Nails · Beauty",
     description:
-      "Beauty services delivered with attention to hygiene and customer comfort.",
+      "Refined beauty services delivered with comfort, care, and professional attention to detail.",
     items: ["Facial", "Cleanup", "Nail Extensions", "Manicure", "Pedicure"],
     icon: "sparkles",
   },
@@ -22,7 +22,7 @@ export const services = [
     title: "Grooming",
     tag: "Men · Women · Kids",
     description:
-      "Complete grooming solutions for every age and occasion.",
+      "Complete grooming solutions for every age and occasion, from quick refreshes to polished finishing touches.",
     items: ["Beard Styling", "Haircut", "Kids Haircut", "Party Styling"],
     icon: "user-round",
   },

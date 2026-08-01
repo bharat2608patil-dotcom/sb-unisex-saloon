@@ -1,10 +1,10 @@
 import { heroImagePath } from "./business";
 
 export const hero = {
-  kicker: "Professional Hair & Beauty Care",
+  kicker: "Premium Hair & Beauty Studio",
   title: "Style that\nspeaks for you.",
   description:
-    "Modern unisex salon in Chikhali offering professional haircuts, styling, beauty and grooming services with experienced stylists.",
+    "Experience modern haircuts, professional styling, beauty treatments, and personalised grooming in a calm, premium salon environment.",
   image: heroImagePath,
-  features: ["Hair Styling", "Beauty Services", "Professional Grooming"],
+  features: ["Expert Hair Styling", "Beauty Services", "Professional Grooming"],
 };
