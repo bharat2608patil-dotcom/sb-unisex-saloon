@@ -22,7 +22,7 @@ function ContactSection({ onBook }) {
             <button className="btn-primary !bg-[hsl(var(--secondary))] !text-[hsl(var(--primary))]" onClick={onBook} data-testid="button-contact-book">
               <CalendarDays size={16} /> Book a visit
             </button>
-            <a href={`https://wa.me/?text=${encodeURIComponent(contact.whatsappMessage)}`} target="_blank" rel="noreferrer" className="btn-outline !border-[hsl(var(--background)/.3)] !text-[hsl(var(--background))]" data-testid="link-whatsapp">
+            <a href={contact.whatsappUrl} target="_blank" rel="noreferrer" className="btn-outline !border-[hsl(var(--background)/.3)] !text-[hsl(var(--background))]" data-testid="link-whatsapp">
               <MessageCircle size={16} /> WhatsApp us
             </a>
           </div>

@@ -1,4 +1,24 @@
+import fs from "fs";
+import path from "path";
 import nodemailer from "nodemailer";
+import {contact} from "../src/data/contact.js"
+
+const apiDir = path.join(process.cwd(), "api");
+
+// Load HTML template
+function loadTemplate(fileName) {
+  return fs.readFileSync(
+    path.join(apiDir, fileName),
+    "utf8"
+  );
+}
+
+// Replace template variables
+function replaceTemplate(html, data) {
+  return html.replace(/\$\{(\w+)\}/g, (_, key) => {
+    return data[key] ?? "";
+  });
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -7,6 +27,8 @@ export default async function handler(req, res) {
       error: "Method Not Allowed",
     });
   }
+
+  const bookingId = `PS-${Date.now()}`;
 
   try {
     const {
@@ -39,97 +61,55 @@ export default async function handler(req, res) {
 
     await transporter.verify();
 
+const templateData = {
+  name,
+  phone: phone || "-",
+  email: email || "-",
+  service,
+  date,
+  time,
+  notes: notes || "-",
+  bookingId,
+
+  websiteUrl: process.env.WEBSITE_URL || "#",
+  whatsappUrl: contact.whatsappUrl || "#",
+
+};
+
+    const ownerHtml = replaceTemplate(
+      loadTemplate("owner.html"),
+      templateData
+    );
+
+    const customerHtml = replaceTemplate(
+      loadTemplate("customer.html"),
+      templateData
+    );
+
+    // Send booking details to salon owner
     await transporter.sendMail({
       from: process.env.SMTP_FROM,
       to: process.env.SMTP_TO,
       replyTo: email || process.env.SMTP_FROM,
       subject: _subject || "New Booking Request",
-      html: `
-      <div style="font-family:Arial;padding:20px">
-      
-      <h2>📅 New Booking Request</h2>
-
-      <table cellpadding="8" cellspacing="0" border="1" style="border-collapse:collapse;width:100%">
-        <tr>
-          <td><b>Name</b></td>
-          <td>${name}</td>
-        </tr>
-
-        <tr>
-          <td><b>Phone</b></td>
-          <td>${phone || "-"}</td>
-        </tr>
-
-        <tr>
-          <td><b>Email</b></td>
-          <td>${email || "-"}</td>
-        </tr>
-
-        <tr>
-          <td><b>Service</b></td>
-          <td>${service}</td>
-        </tr>
-
-        <tr>
-          <td><b>Date</b></td>
-          <td>${date}</td>
-        </tr>
-
-        <tr>
-          <td><b>Time</b></td>
-          <td>${time}</td>
-        </tr>
-
-        <tr>
-          <td><b>Notes</b></td>
-          <td>${notes || "-"}</td>
-        </tr>
-
-      </table>
-
-      </div>
-      `,
+      html: ownerHtml,
     });
 
-    // Confirmation email to customer
+    // Send confirmation email to customer
     if (email) {
       await transporter.sendMail({
         from: process.env.SMTP_FROM,
         to: email,
         subject: "Booking Request Received",
-        html: `
-        <div style="font-family:Arial;padding:20px">
-
-        <h2>Thank you for your booking request!</h2>
-
-        <p>Hello <b>${name}</b>,</p>
-
-        <p>
-        We have received your booking request.
-        Our team will contact you shortly to confirm your appointment.
-        </p>
-
-        <hr>
-
-        <p><b>Service:</b> ${service}</p>
-        <p><b>Date:</b> ${date}</p>
-        <p><b>Time:</b> ${time}</p>
-
-        <br>
-
-        <p>
-        Regards,<br>
-        Premium Studio Unisex Salon
-        </p>
-
-        </div>
-        `,
+        html: customerHtml,
       });
     }
 
     return res.status(200).json({
       ok: true,
+      bookingId,
     });
+
   } catch (err) {
     console.error(err);
 

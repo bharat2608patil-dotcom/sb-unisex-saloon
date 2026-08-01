@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salon Booking Email</title>
+<style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f4f4f4;
+    font-family:Arial,Helvetica,sans-serif;
+    padding:30px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 35px rgba(0,0,0,.12);
+}
+
+.header{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:35px;
+}
+
+.header h1{
+    font-size:32px;
+    margin-top:10px;
+}
+
+.header p{
+    opacity:.8;
+    margin-top:8px;
+}
+
+.section{
+    padding:30px;
+}
+
+.title{
+    font-size:22px;
+    margin-bottom:25px;
+    color:#222;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    border:1px solid #ececec;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.label{
+    background:#fafafa;
+    font-weight:bold;
+    padding:16px;
+    border-bottom:1px solid #ececec;
+}
+
+.value{
+    padding:16px;
+    border-bottom:1px solid #ececec;
+}
+
+.grid div:nth-last-child(-n+2){
+    border-bottom:none;
+}
+
+.notes{
+    margin-top:25px;
+    background:#fff8e6;
+    border-left:5px solid orange;
+    padding:20px;
+    border-radius:10px;
+}
+
+.center{
+    text-align:center;
+}
+
+.button{
+    display:inline-block;
+    margin-top:25px;
+    text-decoration:none;
+    background:#d4af37;
+    color:#000;
+    padding:14px 28px;
+    border-radius:50px;
+    font-weight:bold;
+}
+
+.footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.footer p{
+    opacity:.8;
+    font-size:14px;
+}
+
+.logo{
+    font-size:50px;
+}
+
+.status{
+    display:inline-block;
+    background:#16a34a;
+    color:white;
+    padding:8px 18px;
+    border-radius:50px;
+    font-size:13px;
+    margin-top:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div class="logo">✂️</div>
+
+        <h1 class="salonName">SB Unisex Salon</h1>
+
+        <p>Luxury Hair • Beauty • Grooming</p>
+
+        <div class="status">
+            NEW BOOKING REQUEST
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <div class="title">
+            Customer Details
+        </div>
+
+<table
+    role="presentation"
+    cellpadding="0"
+    cellspacing="0"
+    width="100%"
+    style="border:1px solid #ececec;border-radius:12px;border-collapse:collapse;overflow:hidden;"
+>
+
+<tr>
+    <td style="background:#fafafa;padding:16px;font-weight:bold;border-bottom:1px solid #ececec;width:160px;">
+        Name
+    </td>
+    <td style="padding:16px;border-bottom:1px solid #ececec;">
+        ${name}
+    </td>
+</tr>
+
+<tr>
+    <td style="background:#fafafa;padding:16px;font-weight:bold;border-bottom:1px solid #ececec;">
+        Phone
+    </td>
+    <td style="padding:16px;border-bottom:1px solid #ececec;">
+        ${phone}
+    </td>
+</tr>
+
+<tr>
+    <td style="background:#fafafa;padding:16px;font-weight:bold;border-bottom:1px solid #ececec;">
+        Email
+    </td>
+    <td style="padding:16px;border-bottom:1px solid #ececec;">
+        ${email}
+    </td>
+</tr>
+
+<tr>
+    <td style="background:#fafafa;padding:16px;font-weight:bold;border-bottom:1px solid #ececec;">
+        Service
+    </td>
+    <td style="padding:16px;border-bottom:1px solid #ececec;">
+        ${service}
+    </td>
+</tr>
+
+<tr>
+    <td style="background:#fafafa;padding:16px;font-weight:bold;border-bottom:1px solid #ececec;">
+        Preferred Date
+    </td>
+    <td style="padding:16px;border-bottom:1px solid #ececec;">
+        ${date}
+    </td>
+</tr>
+
+<tr>
+    <td style="background:#fafafa;padding:16px;font-weight:bold;">
+        Preferred Time
+    </td>
+    <td style="padding:16px;">
+        ${time}
+    </td>
+</tr>
+
+</table>
+
+        <div class="notes">
+            <h3 style="margin-bottom:12px;">Additional Notes</h3>
+            ${notes}
+        </div>
+
+        <div class="center">
+            <a class="button" href="${websiteUrl}">
+                Open Dashboard
+            </a>
+        </div>
+
+    </div>
+
+    <div class="footer">
+
+        <h2 class="salonName">SB Unisex Salon</h2>
+
+        <p>
+            This email was automatically generated from your website booking form.
+        </p>
+
+        <p>
+            Booking ID: <strong>${bookingId}</strong>
+        </p>
+
+    </div>
+</div>
+<script type="module">
+import { business } from "../src/data/business.js";
+document.querySelector(".salonName").textContent = business.name;
+console.log(business);
+</script>
+
+</body>
+</html>
