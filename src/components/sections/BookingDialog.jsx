@@ -10,7 +10,7 @@ function BookingDialog({ onClose }) {
     phone: "9172192522",
     email: "bharat2611patil@gmail.com",
     service: "Haircut",
-    date: "03-10-2026",
+    date: "2026-12-31",
     time: "23:56",
     notes: "",
   });
