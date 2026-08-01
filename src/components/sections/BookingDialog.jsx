@@ -6,12 +6,12 @@ import { useContact, useServices } from "../../hooks/useSalonData";
 function BookingDialog({ onClose }) {
   const [step, setStep] = useState("form");
   const [form, setForm] = useState({
-    name: "bharat",
-    phone: "9172192522",
-    email: "bharat2611patil@gmail.com",
-    service: "Haircut",
-    date: "2026-12-31",
-    time: "23:56",
+    name: "",
+    phone: "",
+    email: "",
+    service: "",
+    date: "",
+    time: "",
     notes: "",
   });
 
