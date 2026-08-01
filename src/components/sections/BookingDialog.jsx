@@ -5,15 +5,17 @@ import { useContact, useServices } from "../../hooks/useSalonData";
 
 function BookingDialog({ onClose }) {
   const [step, setStep] = useState("form");
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    service: "",
-    date: "",
-    time: "",
-    notes: "",
-  });
+const today = new Date().toISOString().split("T")[0];
+
+const [form, setForm] = useState({
+  name: "",
+  phone: "",
+  email: "",
+  service: "",
+  date: today,
+  time: "",
+  notes: "",
+});
 
   const [error, setError] = useState("");
   const [autoOpenWhatsApp, setAutoOpenWhatsApp] = useState(false);
