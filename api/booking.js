@@ -1,9 +1,9 @@
 import fs from "fs";
 import path from "path";
 import nodemailer from "nodemailer";
-import {contact} from "../src/data/contact.js"
+import { contact } from "./config.js";
 
-const apiDir = path.join(process.cwd(), "api");
+const apiDir = path.resolve("api");
 
 // Load HTML template
 function loadTemplate(fileName) {
