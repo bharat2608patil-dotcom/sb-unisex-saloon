@@ -138,13 +138,12 @@ export default async function handler(req, res) {
 
 
     const ownerHtml = replaceTemplate(
-      loadTemplate("owner.html"),
+      loadTemplate("templates/owner.html"),
       templateData
     );
 
-
     const customerHtml = replaceTemplate(
-      loadTemplate("customer.html"),
+      loadTemplate("templates/customer.html"),
       templateData
     );
 
